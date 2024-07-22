@@ -20,6 +20,12 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
     padding: 20px;
     border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.books > .book-card:hover {
+    transform: scale(1.1);
 }
 
 .book-card > .description {
