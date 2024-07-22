@@ -1,0 +1,52 @@
+* {
+    font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+}
+
+.books {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 80%;
+    margin: 30px auto;
+    gap: 20px;
+    justify-content: space-evenly;
+}
+
+.books > .book-card {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row-reverse;
+    gap: 20px;
+    margin: 20px 0;
+    box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.book-card > .description {
+    width: 16rem;
+
+}
+
+.description h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+.description p span {
+    font-size: 1.2rem;
+    display: block;
+    margin-top: 15px;
+}
+
+.description p .title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: block;
+    margin-top: 0;
+}
+
+.book-card img {
+    width: 220px;
+    height: 100%;
+    border-radius: 5px;
+}
