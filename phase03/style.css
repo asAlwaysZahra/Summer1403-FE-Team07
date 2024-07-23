@@ -3,6 +3,7 @@
     --color-bg2: #ffffff;
     --color-fg: #171616;
     --color-hd: #3e9598;
+    --opposite-hd: #76ABAE;
 }
 
 [data-theme="dark"] {
@@ -12,6 +13,7 @@
     --color-bg2: #31363F;
     --color-fg: #EEEEEE;
     --color-hd: #76ABAE;
+    --opposite-hd: #3e9598;
 }
 
 
@@ -49,7 +51,7 @@ body {
 }
 
 .books > .book-card:hover {
-    transform: scale(1.1);
+    transform: scale(1.08);
 }
 
 .book-card > .description {
@@ -82,15 +84,25 @@ body {
     border-radius: 5px;
 }
 
-#sun {
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
+#sun, #moon {
+    width: 25px;
+    height: 25px;
+    transition: all 0.3s ease;
 }
 
-#moon {
-    width: 50px;
-    height: 50px;
+.toggleButton {
+    width: fit-content;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 10px 10px 0 0;
+    border-radius: 100%;
+    padding: 5px;
     cursor: pointer;
-    margin: 5px 15px 10px 10px;
+    user-select: none;
+    transition: all 0.2s ease;
+}
+
+.toggleButton:hover {
+    background-color: var(--opposite-hd);
 }
