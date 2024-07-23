@@ -28,6 +28,12 @@ body {
   color: var(--color-fg);
   transition: all 0.3s ease;
 }
+body nav {
+  background-color: var(--color-bg2);
+  height: 100px;
+  width: 100%;
+  display: block;
+}
 
 .books {
   display: flex;
