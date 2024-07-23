@@ -13,7 +13,7 @@
   --color-fg: #EEEEEE;
   --color-hd: #76ABAE;
   --opposite-hd: #3e9598;
-  --toggle-shadow: rgba(180, 180, 180, 0.2) 0px 3px 6px, rgba(180, 180, 180, 0.3) 0px 3px 6px, rgba(180, 180, 180, 0.3) 0px 3px 8px;
+  --toggle-shadow: rgba(118, 171, 174, 0.2) 0px 3px 6px, rgba(118, 171, 174, 0.3) 0px 3px 6px, rgba(118, 171, 174, 0.3) 0px 3px 8px;
 }
 
 * {
