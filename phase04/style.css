@@ -1,108 +1,114 @@
-[data-theme="light"] {
-    --color-bg: #ffffff;
-    --color-bg2: #ffffff;
-    --color-fg: #171616;
-    --color-hd: #3e9598;
-    --opposite-hd: #76ABAE;
+[data-theme=light] {
+  --color-bg: #ffffff;
+  --color-bg2: #ffffff;
+  --color-fg: #171616;
+  --color-hd: #3e9598;
+  --opposite-hd: #76ABAE;
+  --toggle-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px, rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-[data-theme="dark"] {
-    /*--color-bg: #1b1b1d;*/
-    /*--color-bg2: #242526;*/
-    --color-bg: #222831;
-    --color-bg2: #31363F;
-    --color-fg: #EEEEEE;
-    --color-hd: #76ABAE;
-    --opposite-hd: #3e9598;
+[data-theme=dark] {
+  --color-bg: #222831;
+  --color-bg2: #31363F;
+  --color-fg: #EEEEEE;
+  --color-hd: #76ABAE;
+  --opposite-hd: #3e9598;
+  --toggle-shadow: rgba(180, 180, 180, 0.2) 0px 3px 6px, rgba(180, 180, 180, 0.3) 0px 3px 6px, rgba(180, 180, 180, 0.3) 0px 3px 8px;
 }
-
 
 * {
-    font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background-color: var(--color-bg);
-    color: var(--color-fg);
-    transition: all 0.3s ease;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  transition: all 0.3s ease;
 }
 
 .books {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 80%;
-    margin: 30px auto;
-    gap: 20px;
-    justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 80%;
+  margin: 30px auto;
+  gap: 20px;
+  justify-content: space-evenly;
 }
-
 .books > .book-card {
-    background-color: var(--color-bg2);
-    display: flex;
-    align-items: flex-start;
-    flex-direction: row-reverse;
-    gap: 20px;
-    margin: 20px 0;
-    box-shadow: rgba(0, 0, 0, 0.44) 0 3px 8px;
-    padding: 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  background-color: var(--color-bg2);
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row-reverse;
+  gap: 20px;
+  margin: 20px 0;
+  box-shadow: rgba(0, 0, 0, 0.44) 0 3px 8px;
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
-
 .books > .book-card:hover {
-    transform: scale(1.08);
+  transform: scale(1.08);
+}
+.books > .book-card > .description {
+  width: 16rem;
+}
+.books > .book-card > .description > h3 {
+  color: var(--color-hd);
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+.books > .book-card > .description > p {
+  position: relative;
+}
+.books > .book-card > .description > p > span {
+  font-size: 1.2rem;
+  display: block;
+  margin-top: 15px;
+}
+.books > .book-card > .description > p .title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: block;
+  margin-top: 0;
+}
+.books > .book-card > img {
+  width: 220px;
+  height: 100%;
+  border-radius: 5px;
 }
 
-.book-card > .description {
-    width: 16rem;
-
+#sun {
+  width: 35px;
+  height: 35px;
+  transition: all 0.3s ease;
 }
 
-.description h3 {
-    color: var(--color-hd);
-    margin-top: 0;
-    font-size: 1.5rem;
-}
-
-.description p span {
-    font-size: 1.2rem;
-    display: block;
-    margin-top: 15px;
-}
-
-.description p .title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    display: block;
-    margin-top: 0;
-}
-
-.book-card img {
-    width: 220px;
-    height: 100%;
-    border-radius: 5px;
-}
-
-#sun, #moon {
-    width: 25px;
-    height: 25px;
-    transition: all 0.3s ease;
+#moon {
+  width: 35px;
+  height: 35px;
+  transition: all 0.3s ease;
 }
 
 .toggleButton {
-    width: fit-content;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin: 10px 10px 0 0;
-    border-radius: 100%;
-    padding: 5px;
-    cursor: pointer;
-    user-select: none;
-    transition: all 0.2s ease;
+  width: fit-content;
+  position: fixed;
+  bottom: 100px;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 8px 20px 8px 10px;
+  background-color: var(--color-bg2);
+  box-shadow: var(--toggle-shadow);
+  border-right: 0;
+  border-radius: 25px 0 0 25px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
 }
 
-.toggleButton:hover {
-    background-color: var(--opposite-hd);
-}
+/*# sourceMappingURL=style.css.map */
