@@ -1,5 +1,13 @@
 type Theme = "dark" | "light";
 
+interface Book {
+    name: string;
+    genre: string[];
+    image: string;
+    author: string;
+    publishData: string;
+    price: number;
+}
 async function fetchData() {
     try {
         const response = await fetch("https://raw.githubusercontent.com/Star-Academy/codestar-documents/master/static/datasets/books.json");
@@ -7,13 +15,15 @@ async function fetchData() {
             throw new Error('Failed to fetch data');
         }
         return await response.json();
+
     } catch (error) {
         console.error('Error fetching data:', error);
     }
 }
 
 async function displayBooks() {
-    const books = await fetchData();
+    const books: Book[] = await fetchData();
+
     if (!books) {
         return;
     }
@@ -39,8 +49,8 @@ async function displayBooks() {
     }
 }
 
-displayBooks().then(r => {
-
+displayBooks().then(() => {
+    console.log("Books displayed successfully");
 });
 
 function calculateSettingAsThemeString(localStorageTheme: string, systemSettingDark: MediaQueryList): Theme {

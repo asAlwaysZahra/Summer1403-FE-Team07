@@ -82,7 +82,9 @@ function displayBooks() {
         });
     });
 }
-displayBooks();
+displayBooks().then(function () {
+    console.log("Books displayed successfully");
+});
 function calculateSettingAsThemeString(localStorageTheme, systemSettingDark) {
     if (localStorageTheme === null) {
         if (systemSettingDark.matches) {
