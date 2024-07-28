@@ -64,7 +64,7 @@ function calculateSettingAsThemeString(localStorageTheme: string, systemSettingD
     }
 }
 
-function updateButton(buttonEl: HTMLElement, isDark: boolean) {
+function updateButton(isDark: boolean) {
     const sun = document.getElementById("sun");
     const moon = document.getElementById("moon");
 
@@ -88,14 +88,14 @@ function setInitiativeTheme() {
 
     let currentThemeSetting: Theme = calculateSettingAsThemeString(localStorageTheme, systemSettingDark);
 
-    updateButton(button, currentThemeSetting === "dark");
+    updateButton(currentThemeSetting === "dark");
     updateThemeOnHtmlEl(currentThemeSetting);
 
     button.addEventListener("click", () => {
         const newTheme: Theme = currentThemeSetting === "dark" ? "light" : "dark";
 
         localStorage.setItem("theme", newTheme);
-        updateButton(button, newTheme === "dark");
+        updateButton(newTheme === "dark");
         updateThemeOnHtmlEl(newTheme);
 
         currentThemeSetting = newTheme;
@@ -103,3 +103,4 @@ function setInitiativeTheme() {
 }
 
 setInitiativeTheme();
+
