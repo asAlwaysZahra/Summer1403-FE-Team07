@@ -11,9 +11,6 @@ interface Book {
 async function fetchData() {
     try {
         const response = await fetch("https://raw.githubusercontent.com/Star-Academy/codestar-documents/master/static/datasets/books.json");
-        if (!response.ok) {
-            throw new Error('Failed to fetch data');
-        }
         return await response.json();
 
     } catch (error) {
@@ -50,7 +47,7 @@ async function displayBooks() {
 }
 
 displayBooks().then(() => {
-    console.log("Books displayed successfully");
+    return;
 });
 
 function calculateSettingAsThemeString(localStorageTheme: string, systemSettingDark: MediaQueryList): Theme {
@@ -68,13 +65,8 @@ function updateButton(isDark: boolean) {
     const sun = document.getElementById("sun");
     const moon = document.getElementById("moon");
 
-    if (isDark) {
-        sun!.style.display = "block";
-        moon!.style.display = "none";
-    } else {
-        moon!.style.display = "block";
-        sun!.style.display = "none";
-    }
+    sun!.style.display = isDark ? "block" : "none";
+    moon!.style.display = isDark ? "none" : "block";
 }
 
 function updateThemeOnHtmlEl(theme: Theme) {
