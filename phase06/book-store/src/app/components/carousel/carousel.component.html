@@ -1,0 +1,19 @@
+<p-carousel
+  [value]="banners"
+  [numVisible]="1"
+  [numScroll]="1"
+  [circular]="true"
+  class="carouselContainer">
+  <ng-template let-product pTemplate="item">
+    <div>
+      <div>
+        <div>
+          <img
+            src="{{product.src}}"
+            [alt]="product.name"
+          />
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>

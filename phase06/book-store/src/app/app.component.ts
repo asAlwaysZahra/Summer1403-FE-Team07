@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { NavbarComponent } from './navbar/navbar.component';
+import {Component} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
+import {NavbarComponent} from './components/navbar/navbar.component';
+import {CarouselComponent} from './components/carousel/carousel.component';
+import {BookCatListComponent} from './components/book-cat-list/book-cat-list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent],
+  imports: [RouterOutlet, NavbarComponent, CarouselComponent, BookCatListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
