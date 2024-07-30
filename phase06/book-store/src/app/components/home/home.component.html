@@ -1,0 +1,7 @@
+<app-navbar></app-navbar>
+
+<div class="booksContainer" >
+  <div *ngFor="let group of books | groupByGenre">
+    <app-book-cat-list [books]="group" ></app-book-cat-list>
+  </div>
+</div>

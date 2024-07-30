@@ -1,22 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Book } from '../models/Book';
-
-interface GroupedBooks {
-  [genre: string]: Book[];
-}
+import {GenreBooks} from "../models/GenreBook";
 
 @Pipe({
   standalone: true,
   name: 'groupByGenre'
 })
 export class GroupByGenrePipe implements PipeTransform {
-
-  transform(books: Book[]): { genre: string, books: Book[] }[] {
+  transform(books: Book[]): GenreBooks[] {
     if (!books) {
       return [];
     }
 
-    const groupedBooks: GroupedBooks = books.reduce((acc: GroupedBooks, book: Book) => {
+    const groupedBooks: { [genre: string]: Book[] } = books.reduce((acc: { [genre: string]: Book[] }, book: Book) => {
       book.genre.forEach((genre: string) => {
         if (!acc[genre]) {
           acc[genre] = [];
@@ -27,8 +23,8 @@ export class GroupByGenrePipe implements PipeTransform {
     }, {});
 
     return Object.keys(groupedBooks).map(genre => ({
-      genre,
-      books: groupedBooks[genre]
+      genreName: genre,
+      booksList: groupedBooks[genre]
     }));
   }
 }

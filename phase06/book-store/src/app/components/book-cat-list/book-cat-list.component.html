@@ -1,11 +1,18 @@
-<p>book-cat-list works! {{books}}</p>
-
-<div *ngFor="let group of books | groupByGenre">
-  <h2>{{ group.genre }}</h2>
-  <p></p>
-  <div *ngFor="let book of group.books">
-    <h3>{{ book.name }}</h3>
-    <p>{{ book.author }}</p>
-    <p>{{ book.genre.join(', ') }}</p>
+<div class="genreContainer" >
+  <div class="genreContainerHeader" >
+    <h2>{{ books.genreName }}</h2>
+    <button>View All</button>
+  </div>
+  <div class="genreBooks" >
+    <div class="genreBook" *ngFor="let book of books.booksList.slice(0, 4)">
+      <img src="{{book.image}}" alt="{{book.name}}"/>
+      <div class="genreDetail" >
+        <div class="genreDetailHeader" >
+          <h3>{{ book.name }}</h3>
+          <p>{{ book.author }}</p>
+        </div>
+        <p>{{ book.price }} $</p>
+      </div>
+    </div>
   </div>
 </div>
