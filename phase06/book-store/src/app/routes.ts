@@ -1,6 +1,7 @@
-import { Routes } from "@angular/router";
-import { HomeComponent } from "./components/home/home.component";
+import {Routes} from "@angular/router";
+import {HomeComponent} from "./components/home/home.component";
 import {CategoryListComponent} from "./components/category-list/category-list.component";
+import {BookDetailsComponent} from "./components/book-details/book-details.component";
 
 const routeConfig: Routes = [
   {
@@ -17,6 +18,11 @@ const routeConfig: Routes = [
     path: 'genre/:category',
     component: CategoryListComponent,
     title: "Genre"
+  },
+  {
+    path: 'details/:name',
+    component: BookDetailsComponent,
+    title: "Book"
   },
   {
     path: '**',

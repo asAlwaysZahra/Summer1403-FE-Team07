@@ -255,4 +255,8 @@ export class BookProviderService {
   public loadBooks(): Book[] {
     return this.books;
   }
+
+  public findBookByName(name: string) {
+    return this.books.find(b => b.name.toLowerCase() === name);
+  }
 }

@@ -66,7 +66,7 @@
   flex-wrap: wrap;
   gap: 50px;
 
-  > .genreBook {
+  > .back-btn {
     border: 2px solid rgba(9, 9, 55, 0.1);
     border-radius: 10px;
     background-color: #F4F4FF;
@@ -76,19 +76,20 @@
     gap: 20px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    text-decoration: none;
 
     &:hover {
       transform: scale(1.07);
     }
 
-    > img {
+    img {
       width: 120px;
       height: 180px;
       border-radius: 5px;
-      box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+      box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
     }
 
-    > .genreDetail {
+    .genreDetail {
       width: 200px;
       padding: 10px 0;
       display: flex;

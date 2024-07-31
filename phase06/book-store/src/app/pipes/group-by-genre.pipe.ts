@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Book } from '../models/Book';
-import {GenreBooks} from "../models/GenreBook";
+import {GenreBooks} from "../models/GenreBooks";
 
 @Pipe({
   standalone: true,

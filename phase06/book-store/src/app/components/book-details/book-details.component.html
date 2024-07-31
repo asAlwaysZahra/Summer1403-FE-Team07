@@ -1,0 +1,28 @@
+@if (book) {
+  <div class="container">
+    <button (click)="goBack()">
+      <img src="/arrow.svg" alt="arrow"/>
+      <p>Book Details</p>
+    </button>
+
+    <div class="details">
+      <aside>
+        <img src="{{book.image}}" alt="kxdosp"/>
+      </aside>
+      <div>
+        <h2>
+          {{ book.name }}
+        </h2>
+        <p class="author">
+          {{ book.author }}
+        </p>
+
+        <div class="details">
+          <p class="title">{{ book.genre.join(' ') }}</p>
+          <p class="title">{{ book.publishData }}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+}

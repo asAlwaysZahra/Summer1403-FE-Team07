@@ -28,6 +28,6 @@ export class CategoryListComponent implements OnInit {
   ngOnInit(): void {
     this.books = this.bookProviderService.loadBooks();
     this.genreCategory = this.route.snapshot.params['category'];
-    this.titleService.setTitle(this.titleService.getTitle() + ' ' + this.genreCategory.replace('-', ' '));
+    this.titleService.setTitle(this.titleService.getTitle() + ' ' + this.genreCategory.replaceAll('-', ' '));
   }
 }

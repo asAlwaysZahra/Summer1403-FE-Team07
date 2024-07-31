@@ -1,15 +1,15 @@
-<div class="container" >
-  <button (click)="goBack()" >
-    <img src="/arrow.svg" alt="arrow" />
-    <p>{{books.genreName}}</p>
+<div class="container">
+  <button (click)="goBack()">
+    <img src="/arrow.svg" alt="arrow"/>
+    <p>{{ books.genreName }}</p>
   </button>
-  <div class="books" >
-    <div class="genreBook" *ngFor="let book of books.booksList" >
-      <div class="imageContainer" >
+  <div class="books">
+    <div (click)="goToDetails(book.name)" class="genreBook" *ngFor="let book of books.booksList">
+      <div class="imageContainer">
         <img src="{{book.image}}" alt="{{book.name}}"/>
       </div>
-      <div class="genre-detail" >
-        <div class="genreDetailHeader" >
+      <div class="genre-detail">
+        <div class="genreDetailHeader">
           <h3>{{ book.name }}</h3>
           <p>{{ book.author }}</p>
         </div>

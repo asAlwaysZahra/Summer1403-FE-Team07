@@ -1,13 +1,13 @@
-<div class="genreContainer" >
-  <div class="genreContainerHeader" >
+<div class="genreContainer">
+  <div class="genreContainerHeader">
     <h2>{{ books.genreName }}</h2>
-    <a [routerLink]="['/genre', books.genreName.toLowerCase().replace(' ', '-')]" >View All</a>
+    <a [routerLink]="['/genre', books.genreName.toLowerCase().replaceAll(' ', '-')]">View All</a>
   </div>
-  <div class="genreBooks" >
-    <div class="genreBook" *ngFor="let book of books.booksList.slice(0, 4)">
+  <div class="genreBooks">
+    <div (click)="goToDetails(book.name)" class="back-btn" *ngFor="let book of books.booksList.slice(0, 4)">
       <img src="{{book.image}}" alt="{{book.name}}"/>
-      <div class="genreDetail" >
-        <div class="genreDetailHeader" >
+      <div class="genreDetail">
+        <div class="genreDetailHeader">
           <h3>{{ book.name }}</h3>
           <p>{{ book.author }}</p>
         </div>
