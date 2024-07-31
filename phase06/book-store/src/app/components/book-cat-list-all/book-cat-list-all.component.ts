@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {GroupByGenrePipe} from "../../pipes/group-by-genre.pipe";
-import {NgForOf, NgOptimizedImage} from "@angular/common";
+import {NgForOf, NgOptimizedImage, Location} from "@angular/common";
 import {GenreBooks} from "../../models/GenreBook";
 
 @Component({
@@ -16,4 +16,11 @@ import {GenreBooks} from "../../models/GenreBook";
 })
 export class BookCatListAllComponent {
   @Input() books: GenreBooks = { genreName: '', booksList: [] };
+
+  constructor(private location: Location) {
+  }
+
+  goBack() {
+    this.location.back();
+  }
 }

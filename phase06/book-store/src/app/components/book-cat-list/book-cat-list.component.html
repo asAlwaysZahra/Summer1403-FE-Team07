@@ -1,7 +1,7 @@
 <div class="genreContainer" >
   <div class="genreContainerHeader" >
     <h2>{{ books.genreName }}</h2>
-    <button>View All</button>
+    <a [routerLink]="['/genre', books.genreName.toLowerCase().replace(' ', '-')]" >View All</a>
   </div>
   <div class="genreBooks" >
     <div class="genreBook" *ngFor="let book of books.booksList.slice(0, 4)">

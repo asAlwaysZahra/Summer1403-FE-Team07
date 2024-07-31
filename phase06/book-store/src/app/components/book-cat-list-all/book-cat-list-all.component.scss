@@ -6,7 +6,10 @@
   gap: 30px;
 }
 
-.header {
+button {
+  outline: none;
+  border: none;
+  background: none;
   width: fit-content;
   display: flex;
   flex-direction: row;

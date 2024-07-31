@@ -1,8 +1,8 @@
 <div class="container" >
-  <div class="header" >
+  <button (click)="goBack()" >
     <img src="/arrow.svg" alt="arrow" />
     <p>{{books.genreName}}</p>
-  </div>
+  </button>
   <div class="books" >
     <div class="genreBook" *ngFor="let book of books.booksList" >
       <div class="imageContainer" >
