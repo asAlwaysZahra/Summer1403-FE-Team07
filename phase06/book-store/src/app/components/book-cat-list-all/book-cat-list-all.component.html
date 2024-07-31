@@ -1,0 +1,20 @@
+<div class="container" >
+  <div class="header" >
+    <img src="/arrow.svg" alt="arrow" />
+    <p>{{books.genreName}}</p>
+  </div>
+  <div class="books" >
+    <div class="genreBook" *ngFor="let book of books.booksList" >
+      <div class="imageContainer" >
+        <img src="{{book.image}}" alt="{{book.name}}"/>
+      </div>
+      <div class="genre-detail" >
+        <div class="genreDetailHeader" >
+          <h3>{{ book.name }}</h3>
+          <p>{{ book.author }}</p>
+        </div>
+        <p>$ {{ book.price }}</p>
+      </div>
+    </div>
+  </div>
+</div>
