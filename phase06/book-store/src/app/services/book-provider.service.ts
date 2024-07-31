@@ -163,7 +163,7 @@ export class BookProviderService {
     {
       name: "The Amazing Spider-Man",
       image: "https://picsum.photos/200/300",
-      genre: ["Action", "Action"],
+      genre: ["Adventure", "Action"],
       author: "Marc Webb",
       publishData: "2012-06-03",
       price: 1199
@@ -171,7 +171,7 @@ export class BookProviderService {
     {
       name: "The Amazing Spider-Man 2",
       image: "https://picsum.photos/200/300",
-      genre: ["Action", "Action"],
+      genre: ["Adventure", "Action"],
       author: "Marc Webb",
       publishData: "2014-04-02",
       price: 1199
