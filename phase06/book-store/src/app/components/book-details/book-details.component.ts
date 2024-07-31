@@ -9,7 +9,7 @@ import {Location, NgOptimizedImage} from "@angular/common";
   selector: 'app-book-details',
   standalone: true,
   imports: [
-    NgOptimizedImage
+    NgOptimizedImage,
   ],
   templateUrl: './book-details.component.html',
   styleUrl: './book-details.component.scss'

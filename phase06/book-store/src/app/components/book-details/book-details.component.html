@@ -4,7 +4,6 @@
       <img src="/arrow.svg" alt="arrow"/>
       <p>Book Details</p>
     </button>
-
     <div class="details">
 
       <aside>
@@ -14,9 +13,16 @@
       <div>
 
         <div>
-          <h2>
-            {{ book.name }}
-          </h2>
+          <div class="header">
+            <h2>
+              {{ book.name }}
+            </h2>
+            <div class="buttons" >
+              <button>
+                <img src="/heart.svg" alt="heart icon" />
+              </button>
+            </div>
+          </div>
           <p class="author">
             {{ book.author }}
           </p>

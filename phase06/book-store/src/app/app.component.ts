@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import { RouterOutlet, RouterModule } from '@angular/router';
+import {RouterOutlet, RouterModule} from '@angular/router';
 import {NavbarComponent} from "./components/navbar/navbar.component";
+import {PrimeNGConfig} from "primeng/api";
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,8 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
 })
 export class AppComponent {
   title = 'book-store';
+
+  constructor(private readonly primeNGConfig: PrimeNGConfig) {
+    primeNGConfig.ripple = true
+  }
 }
