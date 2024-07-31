@@ -34,11 +34,12 @@
     aside {
       height: fit-content;
       padding: 30PX;
-      border-radius: 10px;
       background-color: #F4F4FF;
       position: sticky;
       top: 150px;
-      border: 2px solid rgba(9, 9, 55, 0.1);
+      border: 1px solid rgba(9, 9, 55, 0.1);
+      border-radius: 7px;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 
       > img {
         width: 300px;

@@ -31,13 +31,13 @@ button {
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 60px;
   padding-left: 20px;
 
   > .genreBook {
     width: 300px;
-    border: 2px solid rgba(9, 9, 55, 0.1);
-    border-radius: 10px;
+    border: 1px solid rgba(9, 9, 55, 0.1);
+    border-radius: 7px;
     background-color: #F4F4FF;
     display: flex;
     flex-direction: column;
@@ -46,6 +46,7 @@ button {
     gap: 10px;
     padding: 20px;
     transition: all 0.3s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     cursor: pointer;
 
     &:hover {
