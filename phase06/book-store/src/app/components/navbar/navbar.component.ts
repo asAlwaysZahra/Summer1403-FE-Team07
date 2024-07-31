@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NgOptimizedImage} from "@angular/common";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -12,4 +13,13 @@ import {NgOptimizedImage} from "@angular/common";
 })
 export class NavbarComponent {
 
+  constructor(private router: Router, private route: ActivatedRoute) {
+  }
+
+  navigate() {
+    this.router.navigate([''])
+      .then(() => {
+        return;
+      });
+  }
 }

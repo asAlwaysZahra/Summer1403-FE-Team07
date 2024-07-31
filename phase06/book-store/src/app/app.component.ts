@@ -14,6 +14,6 @@ export class AppComponent {
   title = 'book-store';
 
   constructor(private readonly primeNGConfig: PrimeNGConfig) {
-    primeNGConfig.ripple = true
+    primeNGConfig.ripple = true;
   }
 }

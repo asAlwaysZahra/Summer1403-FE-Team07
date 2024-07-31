@@ -3,7 +3,7 @@ import {BookProviderService} from "../../services/book-provider.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {Book} from "../../models/Book";
-import {Location, NgOptimizedImage} from "@angular/common";
+import {Location, NgOptimizedImage} from "@angular/common"
 
 @Component({
   selector: 'app-book-details',
