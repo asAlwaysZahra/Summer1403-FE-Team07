@@ -1,10 +1,15 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
-import { provideRouter } from "@angular/router";
+import { provideRouter, withComponentInputBinding, withInMemoryScrolling, withViewTransitions } from "@angular/router";
 import routeConfig from "./app/routes";
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideRouter(routeConfig)
+    provideRouter(
+      routeConfig,
+      withViewTransitions(),
+      withComponentInputBinding(),
+      withInMemoryScrolling({ scrollPositionRestoration: 'enabled' })
+    )
   ]
 }).catch((err) => console.error(err));
