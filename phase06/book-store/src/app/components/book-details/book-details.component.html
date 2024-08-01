@@ -1,6 +1,6 @@
 @if (book) {
-  <p-toast />
-  <p-confirmPopup />
+  <p-toast/>
+  <p-confirmPopup/>
   <div class="container">
     <button (click)="goBack()">
       <img src="/arrow.svg" alt="arrow"/>
@@ -15,23 +15,25 @@
       <div>
 
         <div>
-          <div class="header">
+          <div class="header" [style]="{'border': 'none', 'outline': 'none'}">
             <h2>
               {{ book.name }}
             </h2>
-            <div class="buttons" >
-              <button>
-                <img src="/heart.svg" alt="heart icon" />
+            <div class="buttons">
+              <button (click)="onClickFavorite()">
+                @if (isLiked) {
+                  <img src="/heart2-filled.svg" alt="heart icon"/>
+                }
+                @else {
+                  <img src="/heart2.svg" alt="heart icon"/>
+                }
               </button>
-              <p-button
-                (click)="confirm1($event)"
-                label="Save"
-                [outlined]="true" />
-              <p-button
-                (click)="confirm2($event)"
-                label="Delete"
-                severity="danger"
-                [outlined]="true" />
+              <button (click)="editConfirm($event)">
+                <img src="/edit.svg" alt="edit icon">
+              </button>
+              <button (click)="deleteConfirm($event)">
+                <img src="/delete.svg" alt="delete icon">
+              </button>
             </div>
           </div>
           <p class="author">
@@ -39,7 +41,7 @@
           </p>
         </div>
 
-        <div class="description" >
+        <div class="description">
 
           <div>
             <p class="title">Genres</p>
