@@ -65,6 +65,7 @@ export class BookDetailsComponent implements OnInit {
         this.bookName = value.name.toLowerCase().replaceAll(' ', '-');
         this.router.navigate(['/details', this.bookName]).then(() => {
           this.titleService.setTitle(value.name.toLowerCase());
+          this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Book is successfully updated', life: 3000 });
         });
       })
     );
@@ -100,7 +101,7 @@ export class BookDetailsComponent implements OnInit {
       icon: 'pi pi-info-circle',
       acceptButtonStyleClass: 'p-button-danger p-button-sm',
       accept: () => {
-        this.messageService.add({severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000});
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Book is successfully deleted', life: 3000 });
         this.router.navigate(['']).then(() => {
           return
         });
