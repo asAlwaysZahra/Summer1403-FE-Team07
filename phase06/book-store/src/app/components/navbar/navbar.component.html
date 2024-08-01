@@ -5,14 +5,32 @@
     <input type="text" placeholder="Search"/>
   </div>
   <div class="links">
-    <a routerLink="/profile" routerLinkActive="active">
-      <img class="profile" ngSrc="/profile.svg" alt="profile" height="22" width="18"/>
-    </a>
-    <a routerLink="/favorites" routerLinkActive="active">
-      <img class="favorite" ngSrc="/heart.svg" alt="favorites" height="20" width="22"/>
-    </a>
-    <div class="theme">
-      <img ngSrc="/sun.svg" alt="theme" height="30" width="30"/>
-    </div>
+    <p-button (click)="showDialog()" class="custom-button"
+              [style]="{'outline': 'none', 'border': 'none', 'box-shadow': 'none', 'backgroundColor': 'transparent'}">
+      <div class="addDataContainer">
+        <img class="addData" ngSrc="/add.svg" alt="profile" height="50" width="50"/>
+      </div>
+    </p-button>
+    <p-button class="custom-button"
+              [style]="{'outline': 'none', 'border': 'none', 'box-shadow': 'none', 'backgroundColor': 'transparent'}">
+      <div class="favoriteContainer">
+        <img class="favorite" ngSrc="/heart.svg" alt="favorites" height="20" width="22"/>
+      </div>
+    </p-button>
+    <p-button class="custom-button"
+              [style]="{'outline': 'none', 'border': 'none', 'box-shadow': 'none', 'backgroundColor': 'transparent'}">
+      <div class="themeContainer">
+        <img ngSrc="/sun.svg" alt="theme" height="30" width="30"/>
+      </div>
+    </p-button>
   </div>
 </nav>
+<p-dialog
+  header="Header"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: 'fit-content', maxWidth: '80%', minWidth: '25%', minHeight: '50vh' }"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" styleClass="custom-dialog">
+  <div class="content">
+  </div>
+</p-dialog>
