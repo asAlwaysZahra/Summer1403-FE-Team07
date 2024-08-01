@@ -1,5 +1,7 @@
-<div class="booksContainer" >
-  <div *ngFor="let group of books | groupByGenre">
-    <app-book-cat-list [books]="group" ></app-book-cat-list>
-  </div>
+<div class="booksContainer">
+  @for (group of books; track group) {
+    <div>
+      <app-book-cat-list [books]="group"></app-book-cat-list>
+    </div>
+  }
 </div>
