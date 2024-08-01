@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Book} from "../models/Book";
+import {Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -848,8 +849,9 @@ export class BookProviderService {
     }
   ];
 
-  constructor() {
-  }
+  public readonly onAddBook: Subject<Book> = new Subject();
+
+  constructor() {}
 
   public loadBooks(): Book[] {
     return this.books;
@@ -857,5 +859,10 @@ export class BookProviderService {
 
   public findBookByName(name: string) {
     return this.books.find(b => b.name.toLowerCase() === name);
+  }
+
+  public addBook(book: Book) {
+    this.books.push(book);
+    this.onAddBook.next(book); // Emit the new book
   }
 }

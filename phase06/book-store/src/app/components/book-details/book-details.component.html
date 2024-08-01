@@ -1,4 +1,6 @@
 @if (book) {
+  <p-toast />
+  <p-confirmPopup />
   <div class="container">
     <button (click)="goBack()">
       <img src="/arrow.svg" alt="arrow"/>
@@ -21,6 +23,15 @@
               <button>
                 <img src="/heart.svg" alt="heart icon" />
               </button>
+              <p-button
+                (click)="confirm1($event)"
+                label="Save"
+                [outlined]="true" />
+              <p-button
+                (click)="confirm2($event)"
+                label="Delete"
+                severity="danger"
+                [outlined]="true" />
             </div>
           </div>
           <p class="author">
