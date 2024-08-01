@@ -74,7 +74,7 @@ export class NavbarComponent {
   }
 
   onSubmit() {
-    this.submitted = true; // Set to true to show validation messages
+    this.submitted = true;
 
     if (this.bookForm.valid) {
       const formValue = this.bookForm.value;

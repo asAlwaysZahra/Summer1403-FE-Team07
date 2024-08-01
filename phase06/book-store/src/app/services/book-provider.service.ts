@@ -850,6 +850,8 @@ export class BookProviderService {
   ];
 
   public readonly onAddBook: Subject<Book> = new Subject();
+  public readonly onDeleteBook: Subject<Book> = new Subject();
+  public readonly onUpdateBook: Subject<Book> = new Subject();
 
   constructor() {}
 
@@ -859,14 +861,6 @@ export class BookProviderService {
 
   public findBookByName(name: string) {
     return this.books.find(b => b.name.toLowerCase() === name);
-  }
-
-  public addBook(newBook: Book) {
-    if(this.books.findIndex(book => book.name === newBook.name) === -1) {
-      this.books.push(newBook);
-      console.log(newBook);
-      this.onAddBook.next(newBook);
-    }
   }
 
   public getBooksByGenre() {
@@ -886,4 +880,27 @@ export class BookProviderService {
     }));
   }
 
+  public addBook(newBook: Book) {
+    if(this.books.findIndex(book => book.name === newBook.name) === -1) {
+      this.books.push(newBook);
+      this.onAddBook.next(newBook);
+    }
+  }
+
+  public deleteBook(newBook: string) {
+    const index = this.books.findIndex(book => book.name.toLowerCase() === newBook);
+    const book = this.books[index];
+    if(index !== -1) {
+      this.books.splice(index, 1);
+      this.onDeleteBook.next(book);
+    }
+  }
+
+  public updateBook(oldBook: Book, newBook: Book) {
+    const index = this.books.findIndex(book => book.name === oldBook.name);
+    if(index !== -1) {
+      this.books[index] = newBook;
+      this.onUpdateBook.next(newBook);
+    }
+  }
 }
