@@ -11,6 +11,11 @@
   @include center;
 }
 
+h3, p {
+  margin: 0;
+  padding: 0;
+}
+
 .genreContainer {
   @include center();
   gap: 20px;
