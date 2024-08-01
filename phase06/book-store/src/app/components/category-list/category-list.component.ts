@@ -7,6 +7,7 @@ import {BookCatListAllComponent} from "../book-cat-list-all/book-cat-list-all.co
 import {ActivatedRoute} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {Subscription} from "rxjs";
+import {GenreBooks} from "../../models/GenreBooks";
 
 @Component({
   selector: 'app-category-list',
@@ -21,7 +22,7 @@ import {Subscription} from "rxjs";
   styleUrl: './category-list.component.scss'
 })
 export class CategoryListComponent implements OnInit {
-  books: Book[] = [];
+  books: GenreBooks[] = [];
   genreCategory: string = '';
   private subscriptions: Subscription = new Subscription();
 
@@ -30,15 +31,28 @@ export class CategoryListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.books = this.bookProviderService.loadBooks();
-    this.genreCategory = this.route.snapshot.params['category'];
-    this.titleService.setTitle(this.titleService.getTitle() + ' ' + this.genreCategory.replaceAll('-', ' '));
-
     this.subscriptions.add(
       this.bookProviderService.onAddBook.subscribe(value => {
-        this.books.push(value);
-        console.log('New value received category :', value);
+        const groupedBooksMap: { [genre: string]: Book[] } = this.books.reduce((acc, group) => {
+          acc[group.genreName] = group.booksList;
+          return acc;
+        }, {} as { [genre: string]: Book[] });
+
+        value.genre.forEach((genre: string) => {
+          if (!groupedBooksMap[genre]) {
+            groupedBooksMap[genre] = [];
+          }
+          groupedBooksMap[genre].push(value);
+        });
+
+        this.books = Object.keys(groupedBooksMap).map(genre => ({
+          genreName: genre,
+          booksList: groupedBooksMap[genre]
+        }));
       })
     );
+    this.books = this.bookProviderService.getBooksByGenre();
+    this.genreCategory = this.route.snapshot.params['category'];
+    this.titleService.setTitle(this.titleService.getTitle() + ' ' + this.genreCategory.replaceAll('-', ' '));
   }
 }

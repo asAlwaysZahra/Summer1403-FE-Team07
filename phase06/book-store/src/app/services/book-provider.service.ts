@@ -861,8 +861,29 @@ export class BookProviderService {
     return this.books.find(b => b.name.toLowerCase() === name);
   }
 
-  public addBook(book: Book) {
-    this.books.push(book);
-    this.onAddBook.next(book); // Emit the new book
+  public addBook(newBook: Book) {
+    if(this.books.findIndex(book => book.name === newBook.name) === -1) {
+      this.books.push(newBook);
+      console.log(newBook);
+      this.onAddBook.next(newBook);
+    }
   }
+
+  public getBooksByGenre() {
+    const groupedBooks: { [genre: string]: Book[] } = this.books.reduce((acc: { [genre: string]: Book[] }, book: Book) => {
+      book.genre.forEach((genre: string) => {
+        if (!acc[genre]) {
+          acc[genre] = [];
+        }
+        acc[genre].push(book);
+      });
+      return acc;
+    }, {});
+
+    return Object.keys(groupedBooks).map(genre => ({
+      genreName: genre,
+      booksList: groupedBooks[genre]
+    }));
+  }
+
 }

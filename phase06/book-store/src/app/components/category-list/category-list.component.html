@@ -1,7 +1,9 @@
 <div class="booksContainer" >
-  <div *ngFor="let group of (books | groupByGenre)">
-    @if (group.genreName.toLowerCase().replaceAll(' ', '-') === genreCategory) {
-      <app-book-cat-list-all [books]="group" ></app-book-cat-list-all>
-    }
-  </div>
+  @for(group of books; track group) {
+    <div>
+      @if (group.genreName.toLowerCase().replaceAll(' ', '-') === genreCategory) {
+        <app-book-cat-list-all [books]="group" ></app-book-cat-list-all>
+      }
+    </div>
+  }
 </div>
