@@ -2,7 +2,7 @@
   font-size: 1.7rem;
 }
 
-h3, p {
+h2, h3, p {
   margin: 0;
   padding: 0;
 }
@@ -40,6 +40,28 @@ h3, p {
     flex-wrap: wrap;;
     gap: 80px;
 
+    > .buy-text-container {
+      display: flex;
+      //justify-content: flex-end;
+      //width: 85%;
+      flex-direction: column;
+      row-gap: 100px;
+      align-items: flex-end;
+
+      p-button > .p-ripple {
+        border: none;
+        outline: none;
+        background-color: #EF6B4A;
+        box-shadow: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        display: flex;
+        column-gap: 200px;
+        font-size: 2rem;
+        font-weight: 500;
+      }
+    }
+
     aside {
       height: fit-content;
       padding: 30PX;
@@ -61,13 +83,13 @@ h3, p {
     > div {
       display: flex;
       flex-direction: column;
-      row-gap: 60px;
+      //row-gap: 60px;
       width: 60%;
 
       > div {
         display: flex;
         flex-direction: column;
-        row-gap: 10px;
+        row-gap: 60px;
 
         .header {
           width: 100%;
@@ -135,7 +157,5 @@ h3, p {
         row-gap: 30px;
       }
     }
-
-
   }
 }
