@@ -54,10 +54,10 @@ export class NavbarComponent implements OnInit {
   submitted: boolean = false;
   searchControl = new FormControl();
   isLight: boolean = false;
-  themeSrc: string = '/sun.svg';
-  favoriteSrc: string = '/heart-dark.svg';
-  addSrc: string = '/add-dark.svg';
-  searchSrc: string = '/search-dark.svg';
+  themeSrc: string = '/icons/dark/sun.svg';
+  favoriteSrc: string = '/icons/dark/heart-dark.svg';
+  addSrc: string = '/icons/dark/add-dark.svg';
+  searchSrc: string = '/icons/dark/search-dark.svg';
 
   constructor(
     private router: Router,
@@ -141,10 +141,10 @@ export class NavbarComponent implements OnInit {
 
   changeTheme() {
     this.isLight = !this.isLight;
-    this.themeSrc = this.isLight ? '/moon.svg' : '/sun.svg';
-    this.favoriteSrc = this.isLight ? '/heart.svg' : '/heart-dark.svg';
-    this.addSrc = this.isLight ? '/add.svg' : '/add-dark.svg';
-    this.searchSrc = this.isLight ? '/search.svg' : "/search-dark.svg";
+    this.themeSrc = this.isLight ? '/icons/light/moon.svg' : '/icons/dark/sun.svg';
+    this.favoriteSrc = this.isLight ? '/icons/light/heart.svg' : '/icons/dark/heart-dark.svg';
+    this.addSrc = this.isLight ? '/icons/light/add.svg' : '/icons/dark/add-dark.svg';
+    this.searchSrc = this.isLight ? '/icons/light/search.svg' : '/icons/dark/search-dark.svg';
     this.themeService.toggleTheme(this.isLight);
   }
 }

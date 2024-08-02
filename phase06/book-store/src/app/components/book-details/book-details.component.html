@@ -5,7 +5,7 @@
       <p-confirmPopup/>
       <div class="container">
         <button (click)="goBack()">
-          <img src="{{isLight? '/arrow.svg':'/arrow-dark.svg'}}" alt="arrow"/>
+          <img src="{{isLight? '/icons/light/arrow.svg':'/icons/dark/arrow-dark.svg'}}" alt="arrow"/>
           <p>Book Details</p>
         </button>
 
@@ -25,16 +25,16 @@
                   <div class="buttons">
                     <button (click)="onClickFavorite()">
                       @if (isLiked) {
-                        <img src="{{isLight? '/heart2-filled.svg':'/heart2-filled-dark.svg'}}" alt="heart icon"/>
+                        <img src="{{isLight? '/icons/light/heart2-filled.svg':'/icons/dark/heart2-filled-dark.svg'}}" alt="heart icon"/>
                       } @else {
-                        <img src="{{isLight? '/heart2.svg':'/heart2-dark.svg'}}" alt="heart icon"/>
+                        <img src="{{isLight? '/icons/light/heart2.svg':'/icons/dark/heart2-dark.svg'}}" alt="heart icon"/>
                       }
                     </button>
                     <button (click)="showDialog()">
-                      <img src="{{isLight? '/edit.svg':'/edit-dark.svg'}}" alt="edit icon">
+                      <img src="{{isLight? '/icons/light/edit.svg':'/icons/dark/edit-dark.svg'}}" alt="edit icon">
                     </button>
                     <button (click)="deleteConfirm($event)">
-                      <img src="{{isLight? '/delete.svg':'/delete-dark.svg'}}" alt="delete icon">
+                      <img src="{{isLight? '/icons/light/delete.svg':'/icons/dark/delete-dark.svg'}}" alt="delete icon">
                     </button>
                   </div>
                 </div>

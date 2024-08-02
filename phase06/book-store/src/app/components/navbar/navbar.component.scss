@@ -237,3 +237,41 @@ nav {
     color: rgba(9, 9, 55, 0.7);
   }
 }
+
+.p-dialog-content {
+  background-color: var(--background-color-secondry);
+  color: var(--primary-text-color);
+
+  .form-control, .p-inputtext {
+    background-color: var(--input-background-color);
+    color: var(--primary-text-color);
+  }
+}
+
+.p-dialog-header, .custom-dialog div.p-dialog-header > span {
+  background-color: var(--navbar-color);
+  color: var(--primary-text-color);
+}
+
+.p-dialog-title {
+  color: var(--primary-text-color);
+}
+
+.p-datepicker, .p-datepicker-header, .p-datepicker-month, .p-datepicker-year {
+  font-size: 1.8rem;
+  background-color: var(--background-color-secondry);
+  color: var(--primary-text-color);
+
+  .p-ripple:hover {
+    color: #6251DD;
+  }
+}
+
+.p-element.submitButton button div {
+  color: #fff;
+  //background-color: rgba(98, 81, 221, 0.4);
+}
+
+.custom-dialog .submitButton div {
+  color: var(--primary-text-color);
+}
