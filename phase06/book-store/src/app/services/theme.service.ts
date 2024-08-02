@@ -7,7 +7,7 @@ import {Subject} from "rxjs";
 export class ThemeService {
 
   public readonly onToggle: Subject<boolean> = new Subject();
-  isLight: boolean = true;
+  public isLight: boolean = true;
 
   constructor() {
   }
@@ -15,6 +15,15 @@ export class ThemeService {
   public toggleTheme(newIsLight: boolean) {
     console.log(this.isLight + " dkwod");
     this.isLight = newIsLight;
+
+    const currentTheme = document.body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    this.setTheme(newTheme);
+
     this.onToggle.next(this.isLight);
+  }
+
+  setTheme(theme: string) {
+    document.body.setAttribute('data-theme', theme);
   }
 }

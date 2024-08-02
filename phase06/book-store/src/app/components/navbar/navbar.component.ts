@@ -54,6 +54,10 @@ export class NavbarComponent implements OnInit {
   submitted: boolean = false;
   searchControl = new FormControl();
   isLight: boolean = false;
+  themeSrc: string = '/sun.svg';
+  favoriteSrc: string = '/heart-dark.svg';
+  addSrc: string = '/add-dark.svg';
+  searchSrc: string = '/search.svg';
 
   constructor(
     private router: Router,
@@ -137,6 +141,10 @@ export class NavbarComponent implements OnInit {
 
   changeTheme() {
     this.isLight = !this.isLight;
+    this.themeSrc = this.isLight ? '/moon.svg' : '/sun.svg';
+    this.favoriteSrc = this.isLight ? '/heart.svg' : '/heart-dark.svg';
+    this.addSrc = this.isLight ? '/add.svg' : '/add-dark.svg';
+    this.searchSrc = this.isLight ? '/search-dark.svg' : "/search.svg";
     this.themeService.toggleTheme(this.isLight);
   }
 }

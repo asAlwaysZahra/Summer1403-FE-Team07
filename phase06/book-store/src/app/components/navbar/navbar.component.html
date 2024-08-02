@@ -1,17 +1,17 @@
 <nav>
   <img (click)="navigate()" class="logo" ngSrc="/logo.svg" alt="logo" height="40" width="60"/>
   <div class="input">
-    <img ngSrc="/search.svg" alt="search" height="20" width="20"/>
+    <img ngSrc='{{searchSrc}}' alt="search" height="20" width="20"/>
     <input type="text" #searchInput [formControl]="searchControl" placeholder="Search...">
   </div>
 
   <div class="links">
     <ng-container
-      *ngTemplateOutlet="navButton; context: {action: 'show', containerClass: 'addDataContainer', imageClass: 'addData', imageSrc: '/add-dark.svg', alt: 'profile', height: 50, width: 50}"></ng-container>
+      *ngTemplateOutlet="navButton; context: {action: 'show', containerClass: 'addDataContainer', imageClass: 'addData', imageSrc: addSrc, alt: 'profile', height: 50, width: 50}"></ng-container>
     <ng-container
-      *ngTemplateOutlet="navButton; context: {action: '', containerClass: 'favoriteContainer', imageClass: 'favorite', imageSrc: '/heart.svg', alt: 'favorites', height: 20, width: 22}"></ng-container>
+      *ngTemplateOutlet="navButton; context: {action: '', containerClass: 'favoriteContainer', imageClass: 'favorite', imageSrc: favoriteSrc, alt: 'favorites', height: 20, width: 22}"></ng-container>
     <ng-container
-      *ngTemplateOutlet="navButton; context: {action: '', containerClass: 'themeContainer', imageClass: null, imageSrc: '/sun.svg', alt: 'theme', height: 30, width: 30}"></ng-container>
+      *ngTemplateOutlet="navButton; context: {action: 'theme', containerClass: 'themeContainer', imageClass: null, imageSrc: themeSrc, alt: 'theme', height: 30, width: 30}"></ng-container>
   </div>
 </nav>
 
@@ -145,7 +145,7 @@
 
 <ng-template #navButton let-action="action" let-containerClass="containerClass" let-imageClass="imageClass"
              let-imageSrc="imageSrc" let-alt="alt" let-height="height" let-width="width">
-  <p-button (click)="action === 'show' ? showDialog() : null " class="custom-button"
+  <p-button (click)="action === 'show' ? showDialog() : (action === 'theme' ? changeTheme() : null) " class="custom-button"
             [style]="{'outline': 'none', padding: '0', 'border': 'none', 'box-shadow': 'none', 'backgroundColor': 'transparent'}">
     <div [class]="containerClass">
       <img [class]="imageClass ? imageClass : ''" [ngSrc]="imageSrc" [alt]="alt" [height]="height" [width]="width"/>
