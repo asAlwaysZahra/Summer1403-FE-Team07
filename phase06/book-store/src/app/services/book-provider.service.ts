@@ -855,7 +855,7 @@ export class BookProviderService {
   private searchResultsSubject = new BehaviorSubject<any[]>([]);
   searchResults$ = this.searchResultsSubject.asObservable();
 
-  updateSearchResults(results: any[]): void {
+  updateSearchResults(results: Book[]): void {
     this.searchResultsSubject.next(results);
   }
 
@@ -909,10 +909,15 @@ export class BookProviderService {
     }
   }
 
-  public search(query: string): Observable<Book[]> {
-    if (!query.trim()) {
-      return of([]); // return empty array if query is empty
-    }
-    return of(this.books.filter(item => item.name.toLowerCase().includes(query.toLowerCase())));
+  public search(query: string, genre: string = ''): Observable<Book[]> {
+    if (!query.trim())
+      return of([]);
+
+    if (genre == '')
+      return of(this.books.filter(item => item.name.toLowerCase().includes(query.toLowerCase())));
+    else
+      return of(this.books
+        .filter(item => item.name.toLowerCase().includes(query.toLowerCase())
+          && item.genre.join(' ').toLowerCase().includes(genre.toLowerCase())));
   }
 }

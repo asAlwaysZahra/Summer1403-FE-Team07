@@ -24,9 +24,9 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchControl.valueChanges.pipe(
-      debounceTime(300), // wait for the user to stop typing for 300ms
-      distinctUntilChanged(), // only emit if the value has changed
-      switchMap(query => this.bookProviderService.search(query)) // switch to new search observable
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(query => this.bookProviderService.search(query))
     ).subscribe(results => {
       this.results = results;
     });

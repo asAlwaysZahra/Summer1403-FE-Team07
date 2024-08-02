@@ -1,9 +1,11 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {GroupByGenrePipe} from "../../pipes/group-by-genre.pipe";
 import {NgForOf, NgOptimizedImage, Location} from "@angular/common";
 import {GenreBooks} from "../../models/GenreBooks";
 import {Router, RouterLink} from "@angular/router";
 import {retry} from "rxjs";
+import {BookProviderService} from "../../services/book-provider.service";
+import {Book} from "../../models/Book";
 
 @Component({
   selector: 'app-book-cat-list-all',
@@ -17,10 +19,11 @@ import {retry} from "rxjs";
   templateUrl: './book-cat-list-all.component.html',
   styleUrl: './book-cat-list-all.component.scss'
 })
-export class BookCatListAllComponent {
+export class BookCatListAllComponent implements OnInit {
   @Input() books: GenreBooks = {genreName: '', booksList: []};
+  results: Book[] = [];
 
-  constructor(private location: Location, private router: Router) {
+  constructor(private location: Location, private router: Router, private bookProviderService: BookProviderService) {
   }
 
   goBack() {
@@ -32,5 +35,11 @@ export class BookCatListAllComponent {
       .then(() => {
         return;
       });
+  }
+
+  ngOnInit(): void {
+    this.bookProviderService.searchResults$.subscribe(results => {
+      this.results = results;
+    });
   }
 }
