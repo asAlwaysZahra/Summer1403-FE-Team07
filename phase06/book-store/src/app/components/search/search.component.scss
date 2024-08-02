@@ -11,7 +11,7 @@
     width: 300px;
     border: 1px solid rgba(9, 9, 55, 0.1);
     border-radius: 7px;
-    background-color: #F4F4FF;
+    background-color: var(--background-color-secondry);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -62,13 +62,13 @@
           justify-content: center;
           font-size: 1.8rem;
           font-weight: 700;
-          color: #090937;
+          color: var(--primary-text-color);
         }
 
         > p {
           font-size: 1.6rem;
           font-weight: 700;
-          color: rgba(9, 9, 55, 0.6);
+          color: var(--secondary-text-color);
         }
       }
 

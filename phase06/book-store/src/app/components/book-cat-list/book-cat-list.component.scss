@@ -31,7 +31,7 @@ h3, p {
   > h2 {
     font-weight: bold;
     font-size: 3.2rem;
-    color: #090937;
+    color: var(--primary-text-color);
   }
 
   > a {
@@ -75,7 +75,7 @@ h3, p {
   > .back-btn {
     border: 1px solid rgba(9, 9, 55, 0.1);
     border-radius: 7px;
-    background-color: #F4F4FF;
+    background-color: var(--background-color-secondry);
     display: flex;
     flex-direction: row;
     padding: 10px;
@@ -110,13 +110,13 @@ h3, p {
         gap: 5px;
 
         > h3 {
-          color: #090937;
+          color: var(--primary-text-color);
           font-weight: 700;
           font-size: 2rem;
         }
 
         > p {
-          color: rgba(9, 9, 55, 0.6);
+          color: var(--secondary-text-color);
           font-weight: 700;
           font-size: 1.6rem;
         }
