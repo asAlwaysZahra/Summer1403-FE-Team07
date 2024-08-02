@@ -21,6 +21,7 @@ import {Book} from "../../models/Book";
 import {BookProviderService} from "../../services/book-provider.service";
 import {SearchComponent} from "../search/search.component";
 import {debounceTime, distinctUntilChanged, filter, switchMap} from "rxjs/operators";
+import {ThemeService} from "../../services/theme.service";
 
 @Component({
   selector: 'app-navbar',
@@ -52,13 +53,15 @@ export class NavbarComponent implements OnInit {
   bookForm: FormGroup;
   submitted: boolean = false;
   searchControl = new FormControl();
+  isLight: boolean = false;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private messageService: MessageService,
-    private bookProviderService: BookProviderService
+    private bookProviderService: BookProviderService,
+    private themeService: ThemeService
   ) {
     this.bookForm = this.fb.group({
       name: ['', Validators.required],
@@ -71,6 +74,11 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.themeService.onToggle.subscribe(val => {
+      this.isLight = val;
+    });
+
     this.searchControl.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged(),
@@ -125,5 +133,10 @@ export class NavbarComponent implements OnInit {
     const day = ('0' + d.getDate()).slice(-2);
     const year = d.getFullYear();
     return `${year}-${month}-${day}`;
+  }
+
+  changeTheme() {
+    this.isLight = !this.isLight;
+    this.themeService.toggleTheme(this.isLight);
   }
 }
