@@ -57,7 +57,7 @@ export class NavbarComponent implements OnInit {
   themeSrc: string = '/sun.svg';
   favoriteSrc: string = '/heart-dark.svg';
   addSrc: string = '/add-dark.svg';
-  searchSrc: string = '/search.svg';
+  searchSrc: string = '/search-dark.svg';
 
   constructor(
     private router: Router,
@@ -144,7 +144,7 @@ export class NavbarComponent implements OnInit {
     this.themeSrc = this.isLight ? '/moon.svg' : '/sun.svg';
     this.favoriteSrc = this.isLight ? '/heart.svg' : '/heart-dark.svg';
     this.addSrc = this.isLight ? '/add.svg' : '/add-dark.svg';
-    this.searchSrc = this.isLight ? '/search-dark.svg' : "/search.svg";
+    this.searchSrc = this.isLight ? '/search.svg' : "/search-dark.svg";
     this.themeService.toggleTheme(this.isLight);
   }
 }

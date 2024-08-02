@@ -1,11 +1,11 @@
-<div class="bookDetailContainer" >
+<div class="bookDetailContainer">
   @if (results.query === '') {
     @if (book) {
       <p-toast/>
       <p-confirmPopup/>
       <div class="container">
         <button (click)="goBack()">
-          <img src="/arrow.svg" alt="arrow"/>
+          <img src="{{isLight? '/arrow.svg':'/arrow-dark.svg'}}" alt="arrow"/>
           <p>Book Details</p>
         </button>
 
@@ -25,16 +25,16 @@
                   <div class="buttons">
                     <button (click)="onClickFavorite()">
                       @if (isLiked) {
-                        <img src="/heart2-filled.svg" alt="heart icon"/>
+                        <img src="{{isLight? '/heart2-filled.svg':'/heart2-filled-dark.svg'}}" alt="heart icon"/>
                       } @else {
-                        <img src="/heart2.svg" alt="heart icon"/>
+                        <img src="{{isLight? '/heart2.svg':'/heart2-dark.svg'}}" alt="heart icon"/>
                       }
                     </button>
                     <button (click)="showDialog()">
-                      <img src="/edit.svg" alt="edit icon">
+                      <img src="{{isLight? '/edit.svg':'/edit-dark.svg'}}" alt="edit icon">
                     </button>
                     <button (click)="deleteConfirm($event)">
-                      <img src="/delete.svg" alt="delete icon">
+                      <img src="{{isLight? '/delete.svg':'/delete-dark.svg'}}" alt="delete icon">
                     </button>
                   </div>
                 </div>
@@ -59,14 +59,17 @@
                   <p class="title">Summery</p>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad adipisci beatae est, ex
                     excepturi
-                    fugiat laudantium libero non nostrum, obcaecati odio odit officiis quisquam repellat sequi voluptatem!
+                    fugiat laudantium libero non nostrum, obcaecati odio odit officiis quisquam repellat sequi
+                    voluptatem!
                     Accusamus assumenda at atque commodi cumque cupiditate, delectus dolores doloribus, eaque est illum
                     magnam
-                    magni molestias natus non provident quae, sit tenetur ullam unde vel voluptate voluptates voluptatum.
+                    magni molestias natus non provident quae, sit tenetur ullam unde vel voluptate voluptates
+                    voluptatum.
                     Dicta, perferendis, tenetur. Accusamus adipisci alias amet architecto atque beatae consectetur
                     consequuntur, debitis dolor doloremque dolores eaque eius esse facilis, fuga id illo in inventore
                     ipsam
-                    iure laudantium maiores maxime, minima modi nesciunt nobis obcaecati officia omnis quos reiciendis rem
+                    iure laudantium maiores maxime, minima modi nesciunt nobis obcaecati officia omnis quos reiciendis
+                    rem
                     repellat reprehenderit suscipit totam ullam velit voluptate! Consectetur, dignissimos eos, error est
                     illo
                     incidunt itaque laborum libero nostrum obcaecati perferendis quidem quisquam quos similique
@@ -74,10 +77,14 @@
                     A
                     aliquid asperiores autem consequatur culpa deserunt ducimus, enim ex fugit incidunt inventore, nemo
                     neque
-                    omnis quasi rerum. Accusantium aliquid fugiat fugit ipsam laborum laudantium minima natus, neque porro
-                    quam? Beatae blanditiis esse in iste, itaque maiores quaerat totam veritatis voluptate voluptates. Ab
-                    asperiores cupiditate, dignissimos ducimus eveniet itaque labore modi molestias neque nulla odit quos
-                    sapiente voluptatum! Adipisci aperiam consequatur doloremque earum eius exercitationem facere facilis
+                    omnis quasi rerum. Accusantium aliquid fugiat fugit ipsam laborum laudantium minima natus, neque
+                    porro
+                    quam? Beatae blanditiis esse in iste, itaque maiores quaerat totam veritatis voluptate voluptates.
+                    Ab
+                    asperiores cupiditate, dignissimos ducimus eveniet itaque labore modi molestias neque nulla odit
+                    quos
+                    sapiente voluptatum! Adipisci aperiam consequatur doloremque earum eius exercitationem facere
+                    facilis
                     fugit laborum magnam maiores minima molestiae odit optio placeat quaerat qui quibusdam quos, rerum
                     sint
                     tempore velit vero. Adipisci, est, iusto? Ad alias culpa cumque dolor dolore dolores ducimus eveniet
@@ -92,23 +99,31 @@
                     provident quia recusandae reiciendis rem repudiandae saepe velit veniam veritatis voluptate
                     voluptatibus!
                     Assumenda autem debitis eaque eligendi, exercitationem id ipsa maiores sint ut velit. Ab accusantium
-                    blanditiis cum cumque dicta dolorem doloribus eos est eveniet ex explicabo facere facilis id in, ipsam
+                    blanditiis cum cumque dicta dolorem doloribus eos est eveniet ex explicabo facere facilis id in,
+                    ipsam
                     laborum molestiae nemo numquam quibusdam reiciendis repellendus saepe unde vitae! Aliquid dicta, ea
                     explicabo nisi odit provident ut! At aut debitis dignissimos dolor dolores eaque eligendi esse
-                    exercitationem expedita facilis fugiat fugit in ipsum iure labore laudantium magnam nemo nisi numquam
+                    exercitationem expedita facilis fugiat fugit in ipsum iure labore laudantium magnam nemo nisi
+                    numquam
                     odio
-                    odit officiis omnis perspiciatis possimus praesentium, quasi repellendus sequi sint tempore temporibus
+                    odit officiis omnis perspiciatis possimus praesentium, quasi repellendus sequi sint tempore
+                    temporibus
                     tenetur vel vitae, voluptates! Aperiam deserunt distinctio dolorum id incidunt, labore molestias nam
                     nemo
                     nesciunt quam quia veniam. Ab distinctio doloribus exercitationem fugit inventore itaque obcaecati
                     quia
-                    quos, ratione vel? Accusamus amet consectetur consequuntur cumque fugiat iure, maxime molestiae optio,
-                    perspiciatis quaerat quas quidem rem repellendus velit voluptas! Alias aliquid atque delectus dolorum
+                    quos, ratione vel? Accusamus amet consectetur consequuntur cumque fugiat iure, maxime molestiae
+                    optio,
+                    perspiciatis quaerat quas quidem rem repellendus velit voluptas! Alias aliquid atque delectus
+                    dolorum
                     id
                     ipsa ipsum labore laudantium magni neque nobis odit perspiciatis provident rem sequi, similique,
-                    temporibus unde veritatis voluptas, voluptatibus. Aut exercitationem inventore ipsa ipsum modi numquam
-                    odio optio quas, quis quod quos tempore, veniam? Cum nemo nesciunt quam! Delectus iste rem repellendus
-                    totam voluptas. Aperiam aspernatur aut commodi deleniti dolores earum esse est facere facilis impedit
+                    temporibus unde veritatis voluptas, voluptatibus. Aut exercitationem inventore ipsa ipsum modi
+                    numquam
+                    odio optio quas, quis quod quos tempore, veniam? Cum nemo nesciunt quam! Delectus iste rem
+                    repellendus
+                    totam voluptas. Aperiam aspernatur aut commodi deleniti dolores earum esse est facere facilis
+                    impedit
                     iure
                     laudantium officiis, repellat repellendus unde ut veniam veritatis! Debitis, deleniti impedit ipsum
                     pariatur porro reiciendis voluptate. Labore.</p>
@@ -135,7 +150,8 @@
             <div class="form-group">
               <div class="labelSection">
                 <label for="name">Name</label>
-                <p class="invalid" *ngIf="bookForm.get('name')?.invalid && (bookForm.get('name')?.touched || submitted)">
+                <p class="invalid"
+                   *ngIf="bookForm.get('name')?.invalid && (bookForm.get('name')?.touched || submitted)">
                   Required
                   <i>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="red">

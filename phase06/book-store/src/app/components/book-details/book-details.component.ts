@@ -15,6 +15,7 @@ import {InputNumberModule} from "primeng/inputnumber";
 import {Subscription} from "rxjs";
 import {searchType} from "../../models/SearchType";
 import {SearchComponent} from "../search/search.component";
+import {ThemeService} from "../../services/theme.service";
 
 @Component({
   selector: 'app-book-details',
@@ -51,11 +52,13 @@ export class BookDetailsComponent implements OnInit {
     query: '',
     results: []
   };
+  isLight: boolean = false;
 
   constructor(private bookProviderService: BookProviderService, private route: ActivatedRoute,
               private titleService: Title, private router: Router, private location: Location,
               private confirmationService: ConfirmationService, private messageService: MessageService,
-              private fb: FormBuilder,) {
+              private fb: FormBuilder,
+              private themeService: ThemeService) {
     this.bookForm = this.fb.group({
       name: ['', Validators.required],
       image: ['', Validators.required],
@@ -67,6 +70,12 @@ export class BookDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.themeService.onToggle.subscribe(val => {
+      console.log("hi" + val);
+      this.isLight = val;
+    });
+
     this.bookProviderService.searchResults$.subscribe(output => {
       this.results = output;
     });
