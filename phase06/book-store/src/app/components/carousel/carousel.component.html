@@ -1,19 +1,17 @@
-<p-carousel
-  [value]="banners"
-  [numVisible]="1"
-  [numScroll]="1"
-  [circular]="true"
-  class="carouselContainer">
-  <ng-template let-product pTemplate="item">
-    <div>
+<div class="carouselContainer">
+  <p-carousel
+    [value]="banners"
+    [numVisible]="1"
+    [numScroll]="1"
+    [circular]="true"
+    autoplayInterval="5000">
+    <ng-template let-product pTemplate="item">
       <div>
-        <div>
-          <img
-            src="{{product.src}}"
-            [alt]="product.name"
-          />
-        </div>
+        <img
+          src="{{product.src}}"
+          [alt]="product.name"
+        />
       </div>
-    </div>
-  </ng-template>
-</p-carousel>
+    </ng-template>
+  </p-carousel>
+</div>

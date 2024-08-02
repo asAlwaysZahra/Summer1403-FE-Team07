@@ -7,6 +7,7 @@ import {Subscription} from "rxjs";
 import {AsyncPipe} from "@angular/common";
 import {GenreBooks} from "../../models/GenreBooks";
 import {Book} from "../../models/Book";
+import {CarouselComponent} from "../carousel/carousel.component";
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ import {Book} from "../../models/Book";
     NavbarComponent,
     GroupByGenrePipe,
     BookCatListComponent,
-    AsyncPipe
+    AsyncPipe,
+    CarouselComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
