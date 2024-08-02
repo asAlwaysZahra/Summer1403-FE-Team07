@@ -18,6 +18,7 @@ import {CalendarModule} from "primeng/calendar";
 import {InputNumberModule} from "primeng/inputnumber";
 import {Book} from "../../models/Book";
 import {BookProviderService} from "../../services/book-provider.service";
+import {SearchComponent} from "../search/search.component";
 
 @Component({
   selector: 'app-navbar',
@@ -36,6 +37,7 @@ import {BookProviderService} from "../../services/book-provider.service";
     NgSwitchDefault,
     NgSwitchCase,
     NgClass,
+    SearchComponent,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',

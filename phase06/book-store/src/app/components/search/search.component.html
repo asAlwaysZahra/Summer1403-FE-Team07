@@ -1,0 +1,7 @@
+<div>
+  <input [formControl]="searchControl" placeholder="Search...">
+  <p>{{results.length}}</p>
+  <ul>
+    <li *ngFor="let result of results">{{ result.name }}</li>
+  </ul>
+</div>
