@@ -4,10 +4,11 @@ import {GroupByGenrePipe} from "../../pipes/group-by-genre.pipe";
 import {BookProviderService} from "../../services/book-provider.service";
 import {BookCatListComponent} from "../book-cat-list/book-cat-list.component";
 import {Subscription} from "rxjs";
-import {AsyncPipe} from "@angular/common";
+import {AsyncPipe, NgForOf} from "@angular/common";
 import {GenreBooks} from "../../models/GenreBooks";
 import {Book} from "../../models/Book";
 import {CarouselComponent} from "../carousel/carousel.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -17,23 +18,30 @@ import {CarouselComponent} from "../carousel/carousel.component";
     GroupByGenrePipe,
     BookCatListComponent,
     AsyncPipe,
-    CarouselComponent
+    CarouselComponent,
+    NgForOf
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 
 export class HomeComponent implements OnInit {
-  books: GenreBooks[] = [];
+  genreBooks: GenreBooks[] = [];
+  results: Book[] = [];
   private subscription: Subscription = new Subscription();
 
-  constructor(private bookProviderService: BookProviderService) {
+  constructor(private bookProviderService: BookProviderService, private router: Router) {
   }
 
   ngOnInit(): void {
+
+    this.bookProviderService.searchResults$.subscribe(results => {
+      this.results = results;
+    });
+
     this.subscription.add(
       this.bookProviderService.onAddBook.subscribe(value => {
-        const groupedBooksMap: { [genre: string]: Book[] } = this.books.reduce((acc, group) => {
+        const groupedBooksMap: { [genre: string]: Book[] } = this.genreBooks.reduce((acc, group) => {
           acc[group.genreName] = group.booksList;
           return acc;
         }, {} as { [genre: string]: Book[] });
@@ -45,12 +53,19 @@ export class HomeComponent implements OnInit {
           groupedBooksMap[genre].push(value);
         });
 
-        this.books = Object.keys(groupedBooksMap).map(genre => ({
+        this.genreBooks = Object.keys(groupedBooksMap).map(genre => ({
           genreName: genre,
           booksList: groupedBooksMap[genre]
         }));
       })
     );
-    this.books = this.bookProviderService.getBooksByGenre();
+    this.genreBooks = this.bookProviderService.getBooksByGenre();
+  }
+
+  goToDetails(name: string) {
+    this.router.navigate(['/details', name.toLowerCase().replaceAll(' ', '-')])
+      .then(() => {
+        return;
+      });
   }
 }

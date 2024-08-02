@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Book} from "../models/Book";
-import {Observable, of, Subject} from "rxjs";
+import {BehaviorSubject, Observable, of, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -852,12 +852,14 @@ export class BookProviderService {
   public readonly onAddBook: Subject<Book> = new Subject();
   public readonly onDeleteBook: Subject<Book> = new Subject();
   public readonly onUpdateBook: Subject<Book> = new Subject();
+  private searchResultsSubject = new BehaviorSubject<any[]>([]);
+  searchResults$ = this.searchResultsSubject.asObservable();
 
-  constructor() {
+  updateSearchResults(results: any[]): void {
+    this.searchResultsSubject.next(results);
   }
 
-  public loadBooks(): Book[] {
-    return this.books;
+  constructor() {
   }
 
   public findBookByName(name: string) {
