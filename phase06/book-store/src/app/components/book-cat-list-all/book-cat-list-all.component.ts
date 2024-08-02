@@ -6,6 +6,8 @@ import {Router, RouterLink} from "@angular/router";
 import {retry} from "rxjs";
 import {BookProviderService} from "../../services/book-provider.service";
 import {Book} from "../../models/Book";
+import {searchType} from "../../models/SearchType";
+import {SearchComponent} from "../search/search.component";
 
 @Component({
   selector: 'app-book-cat-list-all',
@@ -14,14 +16,18 @@ import {Book} from "../../models/Book";
     GroupByGenrePipe,
     NgForOf,
     NgOptimizedImage,
-    RouterLink
+    RouterLink,
+    SearchComponent
   ],
   templateUrl: './book-cat-list-all.component.html',
   styleUrl: './book-cat-list-all.component.scss'
 })
 export class BookCatListAllComponent implements OnInit {
   @Input() books: GenreBooks = {genreName: '', booksList: []};
-  results: Book[] = [];
+  results: searchType = {
+    query: '',
+    results: []
+  };
 
   constructor(private location: Location, private router: Router, private bookProviderService: BookProviderService) {
   }
@@ -38,8 +44,8 @@ export class BookCatListAllComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.bookProviderService.searchResults$.subscribe(results => {
-      this.results = results;
+    this.bookProviderService.searchResults$.subscribe(output => {
+      this.results = output;
     });
   }
 }

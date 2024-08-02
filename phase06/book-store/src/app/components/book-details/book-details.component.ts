@@ -13,6 +13,8 @@ import {CalendarModule} from "primeng/calendar";
 import {DialogModule} from "primeng/dialog";
 import {InputNumberModule} from "primeng/inputnumber";
 import {Subscription} from "rxjs";
+import {searchType} from "../../models/SearchType";
+import {SearchComponent} from "../search/search.component";
 
 @Component({
   selector: 'app-book-details',
@@ -29,7 +31,8 @@ import {Subscription} from "rxjs";
     NgIf,
     ReactiveFormsModule,
     NgClass,
-    NgForOf
+    NgForOf,
+    SearchComponent
   ],
   templateUrl: './book-details.component.html',
   styleUrl: './book-details.component.scss',
@@ -44,7 +47,10 @@ export class BookDetailsComponent implements OnInit {
   bookForm: FormGroup;
   submitted: boolean = false;
   private subscription: Subscription = new Subscription();
-  results: Book[] = [];
+  results: searchType = {
+    query: '',
+    results: []
+  };
 
   constructor(private bookProviderService: BookProviderService, private route: ActivatedRoute,
               private titleService: Title, private router: Router, private location: Location,
@@ -61,9 +67,8 @@ export class BookDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.bookProviderService.searchResults$.subscribe(results => {
-      this.results = results;
+    this.bookProviderService.searchResults$.subscribe(output => {
+      this.results = output;
     });
 
     this.subscription.add(
@@ -81,25 +86,26 @@ export class BookDetailsComponent implements OnInit {
         });
       })
     );
-    this.bookName = this.route.snapshot.params['name'].replaceAll('-', ' ');
-    this.book = this.bookProviderService.findBookByName(this.bookName);
-    this.titleService.setTitle(this.bookName);
 
-    if (!this.book) {
-      this.router.navigate([''])
-        .then(() => {
-          return;
+    this.route.paramMap.subscribe(params => {
+      const newBookName = params.get('name');
+      if (newBookName && this.bookName !== newBookName) {
+        this.bookName = newBookName;
+        this.book = this.bookProviderService.findBookByName(this.bookName.replaceAll('-', ' '));
+        this.titleService.setTitle(this.bookName);
+
+        this.bookForm = this.fb.group({
+          name: [this.book?.name, Validators.required],
+          image: [this.book?.image, Validators.required],
+          genre: [this.book?.genre, Validators.required],
+          author: [this.book?.author, Validators.required],
+          publishData: [new Date(this.book ? this.book.publishData : ''), Validators.required],
+          price: [this.book?.price, [Validators.required, Validators.min(1)]]
         });
-    } else {
-      this.bookForm = this.fb.group({
-        name: [this.book.name, Validators.required],
-        image: [this.book.image, Validators.required],
-        genre: [this.book.genre, Validators.required],
-        author: [this.book.author, Validators.required],
-        publishData: [new Date(this.book.publishData), Validators.required],
-        price: [this.book.price, [Validators.required, Validators.min(1)]]
-      });
-    }
+
+        this.titleService.setTitle(newBookName.replaceAll("-", ' '));
+      }
+    });
   }
 
   goBack() {
@@ -113,6 +119,7 @@ export class BookDetailsComponent implements OnInit {
       icon: 'pi pi-info-circle',
       acceptButtonStyleClass: 'p-button-danger p-button-sm',
       accept: () => {
+        this.bookProviderService.deleteBook(this.bookName)
         this.messageService.add({
           severity: 'info',
           summary: 'Confirmed',
@@ -122,7 +129,6 @@ export class BookDetailsComponent implements OnInit {
         this.router.navigate(['']).then(() => {
           return
         });
-        this.bookProviderService.deleteBook(this.bookName)
       },
       reject: () => {
         return;

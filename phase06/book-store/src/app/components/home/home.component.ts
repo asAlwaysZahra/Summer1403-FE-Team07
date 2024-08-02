@@ -8,7 +8,8 @@ import {AsyncPipe, NgForOf} from "@angular/common";
 import {GenreBooks} from "../../models/GenreBooks";
 import {Book} from "../../models/Book";
 import {CarouselComponent} from "../carousel/carousel.component";
-import {Router} from "@angular/router";
+import {searchType} from "../../models/SearchType";
+import {SearchComponent} from "../search/search.component";
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,8 @@ import {Router} from "@angular/router";
     BookCatListComponent,
     AsyncPipe,
     CarouselComponent,
-    NgForOf
+    NgForOf,
+    SearchComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -27,16 +29,19 @@ import {Router} from "@angular/router";
 
 export class HomeComponent implements OnInit {
   genreBooks: GenreBooks[] = [];
-  results: Book[] = [];
+  results: searchType = {
+    query: '',
+    results: []
+  };
   private subscription: Subscription = new Subscription();
 
-  constructor(private bookProviderService: BookProviderService, private router: Router) {
+  constructor(private bookProviderService: BookProviderService) {
   }
 
   ngOnInit(): void {
 
-    this.bookProviderService.searchResults$.subscribe(results => {
-      this.results = results;
+    this.bookProviderService.searchResults$.subscribe(output => {
+      this.results = output;
     });
 
     this.subscription.add(
@@ -60,12 +65,5 @@ export class HomeComponent implements OnInit {
       })
     );
     this.genreBooks = this.bookProviderService.getBooksByGenre();
-  }
-
-  goToDetails(name: string) {
-    this.router.navigate(['/details', name.toLowerCase().replaceAll(' ', '-')])
-      .then(() => {
-        return;
-      });
   }
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {
-  NgClass, NgForOf,
+  NgClass,
+  NgForOf,
   NgIf,
   NgOptimizedImage,
   NgSwitch,
@@ -51,7 +52,6 @@ export class NavbarComponent implements OnInit {
   bookForm: FormGroup;
   submitted: boolean = false;
   searchControl = new FormControl();
-  results: Book[] = [];
 
   ngOnInit(): void {
     this.searchControl.valueChanges.pipe(
@@ -59,7 +59,7 @@ export class NavbarComponent implements OnInit {
       distinctUntilChanged(),
       switchMap(query => this.bookProviderService.search(query))
     ).subscribe(results => {
-      this.bookProviderService.updateSearchResults(results);
+      this.bookProviderService.updateSearchResults(results, this.searchControl.value);
     });
   }
 
