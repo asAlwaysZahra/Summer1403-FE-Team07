@@ -65,8 +65,8 @@ export class BookDetailsComponent implements OnInit {
         this.bookName = value.name.toLowerCase().replaceAll(' ', '-');
         this.router.navigate(['/details', this.bookName]).then(() => {
           this.titleService.setTitle(value.name.toLowerCase());
-          this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Book is successfully updated', life: 3000 });
         });
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Book is successfully updated', life: 3000 });
       })
     );
     this.bookName = this.route.snapshot.params['name'].replaceAll('-', ' ');
