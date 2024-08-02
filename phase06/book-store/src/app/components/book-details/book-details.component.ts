@@ -3,7 +3,7 @@ import {BookProviderService} from "../../services/book-provider.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {Book} from "../../models/Book";
-import {Location, NgClass, NgIf, NgOptimizedImage} from "@angular/common";
+import {Location, NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
 import {ToastModule} from "primeng/toast";
 import {Button} from "primeng/button";
@@ -28,7 +28,8 @@ import {Subscription} from "rxjs";
     InputNumberModule,
     NgIf,
     ReactiveFormsModule,
-    NgClass
+    NgClass,
+    NgForOf
   ],
   templateUrl: './book-details.component.html',
   styleUrl: './book-details.component.scss',
@@ -43,6 +44,7 @@ export class BookDetailsComponent implements OnInit {
   bookForm: FormGroup;
   submitted: boolean = false;
   private subscription: Subscription = new Subscription();
+  results: Book[] = [];
 
   constructor(private bookProviderService: BookProviderService, private route: ActivatedRoute,
               private titleService: Title, private router: Router, private location: Location,
@@ -59,6 +61,11 @@ export class BookDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.bookProviderService.searchResults$.subscribe(results => {
+      this.results = results;
+    });
+
     this.subscription.add(
       this.bookProviderService.onUpdateBook.subscribe(value => {
         this.book = value;
@@ -66,7 +73,12 @@ export class BookDetailsComponent implements OnInit {
         this.router.navigate(['/details', this.bookName]).then(() => {
           this.titleService.setTitle(value.name.toLowerCase());
         });
-        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Book is successfully updated', life: 3000 });
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Confirmed',
+          detail: 'Book is successfully updated',
+          life: 3000
+        });
       })
     );
     this.bookName = this.route.snapshot.params['name'].replaceAll('-', ' ');
@@ -101,7 +113,12 @@ export class BookDetailsComponent implements OnInit {
       icon: 'pi pi-info-circle',
       acceptButtonStyleClass: 'p-button-danger p-button-sm',
       accept: () => {
-        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Book is successfully deleted', life: 3000 });
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Confirmed',
+          detail: 'Book is successfully deleted',
+          life: 3000
+        });
         this.router.navigate(['']).then(() => {
           return
         });
@@ -157,5 +174,12 @@ export class BookDetailsComponent implements OnInit {
     const day = ('0' + d.getDate()).slice(-2);
     const year = d.getFullYear();
     return `${year}-${month}-${day}`;
+  }
+
+  goToDetails(name: string) {
+    this.router.navigate(['/details', name.toLowerCase().replaceAll(' ', '-')])
+      .then(() => {
+        return;
+      });
   }
 }
