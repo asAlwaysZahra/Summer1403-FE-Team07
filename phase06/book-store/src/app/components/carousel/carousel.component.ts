@@ -22,15 +22,15 @@ export class CarouselComponent implements OnInit {
     this.banners = [
       {
         id: 0,
-        src: "/banners/GOT1.jpg"
+        src: "/banners/banner2.jpg"
       },
       {
         id: 1,
-        src: "/banners/dune.jpg"
+        src: "/banners/banner1.jpg"
       },
       {
         id: 2,
-        src: "/banners/GOT2.jpg"
+        src: "/banners/banner3.jpg"
       }
     ]
   }
