@@ -1,10 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Book} from "../models/Book";
 import {BehaviorSubject, Observable, of, Subject} from "rxjs";
+import {searchType} from "../models/SearchType";
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class BookProviderService {
 
   protected books: Book[] = [
@@ -297,7 +299,7 @@ export class BookProviderService {
       price: 2050,
     },
     {
-      name: "The Silent Night",
+      name: "The Silent Hall",
       image: "https://picsum.photos/id/318/200/300",
       genre: ["Fiction", "Romance"],
       author: "Mark Twain",
@@ -852,11 +854,15 @@ export class BookProviderService {
   public readonly onAddBook: Subject<Book> = new Subject();
   public readonly onDeleteBook: Subject<Book> = new Subject();
   public readonly onUpdateBook: Subject<Book> = new Subject();
-  private searchResultsSubject = new BehaviorSubject<any[]>([]);
+  private searchResultsSubject = new BehaviorSubject<searchType>({
+    query: '',
+    results: []
+  });
   searchResults$ = this.searchResultsSubject.asObservable();
 
-  updateSearchResults(results: Book[]): void {
-    this.searchResultsSubject.next(results);
+  updateSearchResults(results: Book[], query: string): void {
+    const param : searchType = {query, results}
+    this.searchResultsSubject.next(param);
   }
 
   constructor() {
@@ -893,7 +899,8 @@ export class BookProviderService {
   }
 
   public deleteBook(newBook: string) {
-    const index = this.books.findIndex(book => book.name.toLowerCase() === newBook);
+    const index = this.books.findIndex(book => book.name.toLowerCase() === newBook.replaceAll('-', ' '));
+    console.log(newBook, index)
     const book = this.books[index];
     if (index !== -1) {
       this.books.splice(index, 1);
