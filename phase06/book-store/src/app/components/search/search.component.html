@@ -1,7 +1,7 @@
 @if (results.results.length === 0) {
-  <div>
-    nothing to show
-  </div>
+  <h3 class="notFound" >
+    Sorry, we couldn’t find any results. Try refining your search.
+  </h3>
 } @else {
   <div class="search-books">
     <div (click)="goToDetails(book.name)" class="genreBook" *ngFor="let book of results.results">
