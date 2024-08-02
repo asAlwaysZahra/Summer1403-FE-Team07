@@ -1,6 +1,6 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {
-  NgClass,
+  NgClass, NgForOf,
   NgIf,
   NgOptimizedImage,
   NgSwitch,
@@ -11,7 +11,7 @@ import {
 import {Router} from "@angular/router";
 import {Button} from "primeng/button";
 import {DialogModule} from 'primeng/dialog';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import {CalendarModule} from "primeng/calendar";
@@ -19,6 +19,7 @@ import {InputNumberModule} from "primeng/inputnumber";
 import {Book} from "../../models/Book";
 import {BookProviderService} from "../../services/book-provider.service";
 import {SearchComponent} from "../search/search.component";
+import {debounceTime, distinctUntilChanged, switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-navbar',
@@ -38,16 +39,29 @@ import {SearchComponent} from "../search/search.component";
     NgSwitchCase,
     NgClass,
     SearchComponent,
+    NgForOf,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
   encapsulation: ViewEncapsulation.None
 })
 
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   visible: boolean = false;
   bookForm: FormGroup;
   submitted: boolean = false;
+  searchControl = new FormControl();
+  results: Book[] = [];
+
+  ngOnInit(): void {
+    this.searchControl.valueChanges.pipe(
+      debounceTime(300), // wait for the user to stop typing for 300ms
+      distinctUntilChanged(), // only emit if the value has changed
+      switchMap(query => this.bookProviderService.search(query)) // switch to new search observable
+    ).subscribe(results => {
+      this.results = results;
+    });
+  }
 
   constructor(
     private router: Router,
