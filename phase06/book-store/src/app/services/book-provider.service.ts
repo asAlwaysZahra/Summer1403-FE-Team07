@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Book} from "../models/Book";
 import {BehaviorSubject, Observable, of, Subject} from "rxjs";
 import {searchType} from "../models/SearchType";
+import {FetchBookService} from "./fetch-book.service";
 
 @Injectable({
   providedIn: 'root'
@@ -861,11 +862,22 @@ export class BookProviderService {
   searchResults$ = this.searchResultsSubject.asObservable();
 
   updateSearchResults(results: Book[], query: string): void {
-    const param : searchType = {query, results}
+    const param: searchType = {query, results}
     this.searchResultsSubject.next(param);
   }
 
-  constructor() {
+  constructor(private fetchBookService: FetchBookService) {
+    this.initializeBooks().then(() => {
+      return;
+    });
+  }
+
+  private async initializeBooks() {
+    try {
+      this.books = await this.fetchBookService.fetchBooks();
+    } catch (error) {
+      console.error('Error initializing books:', error);
+    }
   }
 
   public findBookByName(name: string) {

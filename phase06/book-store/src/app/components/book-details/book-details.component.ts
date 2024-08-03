@@ -45,7 +45,7 @@ import {BookModalComponent} from "../book-modal/book-modal.component";
 export class BookDetailsComponent implements OnInit {
   book: Book | undefined;
   bookName: string = "";
-  public isLiked: boolean = false;
+  isLiked: boolean = false;
   visible: boolean = false;
   private subscription: Subscription = new Subscription();
   results: searchType = {

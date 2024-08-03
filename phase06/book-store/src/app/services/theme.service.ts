@@ -7,7 +7,7 @@ import {Subject} from "rxjs";
 export class ThemeService {
 
   public readonly onToggle: Subject<boolean> = new Subject();
-  public isLight: boolean = true;
+  private isLight: boolean = true;
 
   constructor() {
   }
