@@ -8,7 +8,7 @@ import {ConfirmPopupModule} from 'primeng/confirmpopup';
 import {ToastModule} from "primeng/toast";
 import {Button} from "primeng/button";
 import {ConfirmationService, MessageService} from "primeng/api";
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CalendarModule} from "primeng/calendar";
 import {DialogModule} from "primeng/dialog";
 import {InputNumberModule} from "primeng/inputnumber";
@@ -16,6 +16,7 @@ import {Subscription} from "rxjs";
 import {searchType} from "../../models/SearchType";
 import {SearchComponent} from "../search/search.component";
 import {ThemeService} from "../../services/theme.service";
+import {BookModalComponent} from "../book-modal/book-modal.component";
 
 @Component({
   selector: 'app-book-details',
@@ -33,7 +34,8 @@ import {ThemeService} from "../../services/theme.service";
     ReactiveFormsModule,
     NgClass,
     NgForOf,
-    SearchComponent
+    SearchComponent,
+    BookModalComponent
   ],
   templateUrl: './book-details.component.html',
   styleUrl: './book-details.component.scss',
@@ -45,8 +47,6 @@ export class BookDetailsComponent implements OnInit {
   bookName: string = "";
   public isLiked: boolean = false;
   visible: boolean = false;
-  bookForm: FormGroup;
-  submitted: boolean = false;
   private subscription: Subscription = new Subscription();
   results: searchType = {
     query: '',
@@ -57,22 +57,12 @@ export class BookDetailsComponent implements OnInit {
   constructor(private bookProviderService: BookProviderService, private route: ActivatedRoute,
               private titleService: Title, private router: Router, private location: Location,
               private confirmationService: ConfirmationService, private messageService: MessageService,
-              private fb: FormBuilder,
               private themeService: ThemeService) {
-    this.bookForm = this.fb.group({
-      name: ['', Validators.required],
-      image: ['', Validators.required],
-      genre: ['', Validators.required],
-      author: ['', Validators.required],
-      publishData: ['', Validators.required],
-      price: [0, [Validators.required, Validators.min(1)]]
-    });
   }
 
   ngOnInit(): void {
 
     this.themeService.onToggle.subscribe(val => {
-      console.log("hi" + val);
       this.isLight = val;
     });
 
@@ -104,16 +94,6 @@ export class BookDetailsComponent implements OnInit {
         this.bookName = newBookName;
         this.book = this.bookProviderService.findBookByName(this.bookName.replaceAll('-', ' '));
         this.titleService.setTitle(this.bookName);
-
-        this.bookForm = this.fb.group({
-          name: [this.book?.name, Validators.required],
-          image: [this.book?.image, Validators.required],
-          genre: [this.book?.genre, Validators.required],
-          author: [this.book?.author, Validators.required],
-          publishData: [new Date(this.book ? this.book.publishData : ''), Validators.required],
-          price: [this.book?.price, [Validators.required, Validators.min(1)]]
-        });
-
         this.titleService.setTitle(newBookName.replaceAll("-", ' '));
       }
     });
@@ -155,48 +135,9 @@ export class BookDetailsComponent implements OnInit {
     this.visible = true;
   }
 
-  onSubmitEdit() {
-    this.submitted = true;
-
-    if (this.bookForm.valid) {
-      const formValue = this.bookForm.value;
-      formValue.publishData = this.formatDate(formValue.publishData);
-
-      if (typeof formValue.genre === 'string') {
-        formValue.genre = formValue.genre.split(", ");
-      }
-
-      const newBook: Book = formValue;
-
-      if (this.book) {
-        this.bookProviderService.updateBook(this.book, newBook);
-        this.visible = false;
-        this.submitted = false;
-      }
-
-    } else {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        life: 3000,
-        detail: 'Form is invalid. Please fill out all required fields.'
-      });
-      this.submitted = false;
-    }
+  closeDialog() {
+    this.visible = false;
   }
 
-  formatDate(date: string): string {
-    const d = new Date(date);
-    const month = ('0' + (d.getMonth() + 1)).slice(-2);
-    const day = ('0' + d.getDate()).slice(-2);
-    const year = d.getFullYear();
-    return `${year}-${month}-${day}`;
-  }
 
-  goToDetails(name: string) {
-    this.router.navigate(['/details', name.toLowerCase().replaceAll(' ', '-')])
-      .then(() => {
-        return;
-      });
-  }
 }
