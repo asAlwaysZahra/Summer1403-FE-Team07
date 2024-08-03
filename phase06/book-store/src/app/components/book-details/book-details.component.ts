@@ -98,6 +98,8 @@ export class BookDetailsComponent implements OnInit {
 
     this.route.paramMap.subscribe(params => {
       const newBookName = params.get('name');
+      const theme = document.body.getAttribute('data-theme');
+      this.isLight = theme === 'light';
       if (newBookName && this.bookName !== newBookName) {
         this.bookName = newBookName;
         this.book = this.bookProviderService.findBookByName(this.bookName.replaceAll('-', ' '));

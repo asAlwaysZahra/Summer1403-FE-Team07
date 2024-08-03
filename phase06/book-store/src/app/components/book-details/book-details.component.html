@@ -31,7 +31,7 @@
                       }
                     </button>
                     <button (click)="showDialog()">
-                      <img src="{{isLight? '/icons/light/edit.svg':'/icons/dark/edit-dark.svg'}}" alt="edit icon">
+                      <img [src]="isLight ? '/icons/light/edit.svg' : '/icons/dark/edit-dark.svg'" alt="edit icon">
                     </button>
                     <button (click)="deleteConfirm($event)">
                       <img src="{{isLight? '/icons/light/delete.svg':'/icons/dark/delete-dark.svg'}}" alt="delete icon">
