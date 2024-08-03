@@ -52,7 +52,6 @@ export class BookCatListAllComponent implements OnInit {
     });
 
   this.themeService.onToggle.subscribe(val => {
-    console.log("hi" + val);
     this.isLight = val;
   });
   }

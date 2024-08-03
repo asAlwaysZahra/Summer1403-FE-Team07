@@ -13,7 +13,6 @@ export class ThemeService {
   }
 
   public toggleTheme(newIsLight: boolean) {
-    console.log(this.isLight + " dkwod");
     this.isLight = newIsLight;
 
     const currentTheme = document.body.getAttribute('data-theme');

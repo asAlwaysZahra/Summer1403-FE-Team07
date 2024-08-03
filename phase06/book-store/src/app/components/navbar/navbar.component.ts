@@ -83,7 +83,6 @@ export class NavbarComponent implements OnInit {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
-      // Clear the search input when the URL changes
       this.searchControl.setValue('');
     });
   }

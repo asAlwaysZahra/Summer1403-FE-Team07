@@ -112,7 +112,6 @@ export class BookModalComponent implements OnInit {
 
   updateBook() {
     this.submitted = true;
-    console.log('update');
 
     if (this.bookForm.valid) {
       const formValue = this.bookForm.value;

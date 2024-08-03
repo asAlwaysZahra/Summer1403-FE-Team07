@@ -900,7 +900,6 @@ export class BookProviderService {
 
   public deleteBook(newBook: string) {
     const index = this.books.findIndex(book => book.name.toLowerCase() === newBook.replaceAll('-', ' '));
-    console.log(newBook, index)
     const book = this.books[index];
     if (index !== -1) {
       this.books.splice(index, 1);
