@@ -10,7 +10,8 @@
   --secondary-text-color: #B0B0B0;
   --navbar-color: #1E1E1E;
   --input-background-color: #2C2C2C;
-
+  --input-invalid: rgba(255, 56, 56, 0.7);
+  --input-border-color: #2C2C2C;
   //---
   --card-background-color: #1E1E1E;
   --input-text-color: #FFFFFF;
@@ -25,6 +26,8 @@
   --secondary-text-color: rgba(9, 9, 55, 0.6);
   --navbar-color: #fff;
   --input-background-color: #F4F4FF;
+  --input-invalid: rgb(255, 41, 41);
+  --input-border-color: rgba(9, 9, 55, 0.6);
 }
 
 * {
