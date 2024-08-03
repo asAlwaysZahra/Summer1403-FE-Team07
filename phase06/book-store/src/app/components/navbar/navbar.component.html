@@ -2,7 +2,7 @@
   <img (click)="navigate()" class="logo" ngSrc="/logo.svg" alt="logo" height="40" width="60"/>
   <div class="input">
     <img ngSrc='{{searchSrc}}' alt="search" height="20" width="20"/>
-    <input type="text" #searchInput [formControl]="searchControl" placeholder="Search...">
+    <input type="text" [formControl]="searchControl" placeholder="Search...">
   </div>
 
   <div class="links">
