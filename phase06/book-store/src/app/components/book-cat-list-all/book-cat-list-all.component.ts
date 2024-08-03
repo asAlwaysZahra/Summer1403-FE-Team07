@@ -8,6 +8,7 @@ import {BookProviderService} from "../../services/book-provider.service";
 import {Book} from "../../models/Book";
 import {searchType} from "../../models/SearchType";
 import {SearchComponent} from "../search/search.component";
+import {ThemeService} from "../../services/theme.service";
 
 @Component({
   selector: 'app-book-cat-list-all',
@@ -22,14 +23,16 @@ import {SearchComponent} from "../search/search.component";
   templateUrl: './book-cat-list-all.component.html',
   styleUrl: './book-cat-list-all.component.scss'
 })
+
 export class BookCatListAllComponent implements OnInit {
   @Input() books: GenreBooks = {genreName: '', booksList: []};
   results: searchType = {
     query: '',
     results: []
   };
+  isLight: boolean = false;
 
-  constructor(private location: Location, private router: Router, private bookProviderService: BookProviderService) {
+  constructor(private location: Location, private router: Router, private bookProviderService: BookProviderService, private themeService: ThemeService) {
   }
 
   goBack() {
@@ -47,5 +50,10 @@ export class BookCatListAllComponent implements OnInit {
     this.bookProviderService.searchResults$.subscribe(output => {
       this.results = output;
     });
+
+  this.themeService.onToggle.subscribe(val => {
+    console.log("hi" + val);
+    this.isLight = val;
+  });
   }
 }

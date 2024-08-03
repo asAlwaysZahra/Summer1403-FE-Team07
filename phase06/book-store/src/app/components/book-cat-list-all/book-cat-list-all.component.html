@@ -1,7 +1,7 @@
 <div class="container">
   @if (results.query === '') {
     <button (click)="goBack()">
-      <img src="/icons/light/arrow.svg" alt="arrow"/>
+      <img src="{{isLight? '/icons/light/arrow.svg':'/icons/dark/arrow-dark.svg'}}" alt="arrow"/>
       <p>{{ books.genreName }}</p>
     </button>
     <div class="books">
