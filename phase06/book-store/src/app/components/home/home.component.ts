@@ -64,6 +64,13 @@ export class HomeComponent implements OnInit {
         }));
       })
     );
-    this.genreBooks = this.bookProviderService.getBooksByGenre();
+    try {
+      this.bookProviderService.getBooksByGenre().then((r) => {
+        this.genreBooks = r;
+      })
+    }
+    catch (e) {
+      console.log(e)
+    }
   }
 }

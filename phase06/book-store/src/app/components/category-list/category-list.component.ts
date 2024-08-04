@@ -51,7 +51,14 @@ export class CategoryListComponent implements OnInit {
         }));
       })
     );
-    this.books = this.bookProviderService.getBooksByGenre();
+    try {
+      this.bookProviderService.getBooksByGenre().then((r) => {
+        this.books = r;
+      })
+    }
+    catch (e) {
+      console.log(e)
+    }
     this.genreCategory = this.route.snapshot.params['category'];
     this.titleService.setTitle(this.titleService.getTitle() + ' ' + this.genreCategory.replaceAll('-', ' '));
   }
